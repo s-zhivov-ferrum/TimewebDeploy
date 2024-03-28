@@ -1,18 +1,19 @@
-name: Deploy to Hosting
-on:
+name: Deploy to Hosting # название скрипта: будет отображаться во вкладке Actions
+
+on: # действие, по которому запускается данный скрипт
   push:
     branches:
       - main
 
-jobs:
-  deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+jobs: # роботы, которые будут выполняться
+  timeweb-deploy: # сборка, которая..
+    name: Deploying to shared hosting Timeweb
+    runs-on: ubuntu-latest # ..будет запущена на основе этого образа
+    steps: # шаги которые будут проделаны после запуска образа
+      - name: Checkout Repository # имя работы номер 1
+        uses: actions/checkout@v4 # переход в самую актуальную ветку
 
-      - name: Deploy to Hosting
+      - name: Deploy to Hosting # имя работы номер 2
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: ${{ secrets.FTP_SERVER }}
